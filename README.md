@@ -24,12 +24,23 @@ All tables live in the Unity Catalog catalog `retail_q`.
 
 ```
 .
-├── account.py          # Silver: Salesforce accounts
-├── opportunity.py      # Silver: Salesforce opportunities
-├── inventory.py        # Silver: store inventory (PostgreSQL)
-├── product_catalog.py  # Silver: product master data (PostgreSQL)
-├── transactions.py     # Silver: sales transactions (blob storage)
-└── fact_sales.py       # Gold: sales fact table
+├── dashbaord/
+│   └── Retail Sales Performance Dashboard      # Dashboard built on the Gold layer
+├── notebooks/
+│   ├── 1_blob_to_bronze.py                     # Load blob storage files into the bronze layer
+│   ├── 1_gold_view.py                          # Create views on top of the Gold tables
+│   ├── 3_calendar.py                           # Build the calendar (date) table
+│   └── 4_metric_view.py                        # Create metric views for reporting
+├── retail_pipeline/
+│   ├── bronze_to_silver/
+│   │   ├── account.py                          # Silver: Salesforce accounts
+│   │   ├── opportunity.py                      # Silver: Salesforce opportunities
+│   │   ├── inventory.py                        # Silver: store inventory (PostgreSQL)
+│   │   ├── product_catalog.py                  # Silver: product master data (PostgreSQL)
+│   │   └── transactions.py                     # Silver: sales transactions (blob storage)
+│   └── silver_to_gold/
+│       └── fact_sales.py                       # Gold: sales fact table
+└── README.md
 ```
 
 ## Tables
